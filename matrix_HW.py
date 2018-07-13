@@ -20,6 +20,8 @@ class Matrix:
     def add(self, m):
         """return a new Matrix object after summation"""
         # m 為傳入預比較的matrix
+        # m 為傳入預比較的matrix
+        #用 deepcopy 先備份 A matrix，再將運算結果存成self.matrix，最後再將備份存入A matrix
         pass
 
     def sub(self, m):
