@@ -1,7 +1,7 @@
-#List save map,and print the map(without __init__)
+#List save map,and print the map(with __init__)
 class Map:
     my_map = list()
-    def set_map(self, n_arg):
+    def __init__(self, n_arg,p_arge):
         self.n = n_arg
         for i in range (0, self.n):
             a = list()
@@ -10,7 +10,6 @@ class Map:
                 j += 1
             self.my_map.append(a)
             i += 1
-    def set_pattern(self, p_arge):
         self.p = p_arge
         if p_arge == 1:
             initial_index = self.n // 2
@@ -27,7 +26,5 @@ class Map:
                 j += 1
             i += 1
             print(' ')
-my_map = Map()
-my_map.set_map(7)
-my_map.set_pattern(1)
+my_map = Map(7,1)
 my_map.display()
