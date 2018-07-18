@@ -26,5 +26,5 @@ class Map:
                 j += 1
             i += 1
             print(' ')
-my_map = Map(7,1)
+my_map = Map(3,1)
 my_map.display()

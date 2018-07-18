@@ -28,6 +28,6 @@ class Map:
             i += 1
             print(' ')
 my_map = Map()
-my_map.set_map(7)
+my_map.set_map(3)
 my_map.set_pattern(1)
 my_map.display()
