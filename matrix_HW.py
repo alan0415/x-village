@@ -21,22 +21,24 @@ class Matrix:
         """return a new Matrix object after summation"""
         # m 為傳入預比較的matrix
         #用 deepcopy 先備份 A matrix，再將運算結果存成self.matrix，最後再將備份存入A matrix
-        self.trans_matrix = deepcopy(self.matrix) #將self.matrix 備份成 self.trans_matrix
+        #self.trans_matrix = deepcopy(self.matrix) #將self.matrix 備份成 self.trans_matrix
         added_matrix = list()
         added_matrix = m
-        for i in range(0, self.rows):
+        for i in range(0, self.cols):
             if len(self.matrix) != len(added_matrix):
                 print('Matrix size should in the same size!! ')
                 self.wrong_count += 1
                 break
             else:
-                for j in range(0, self.cols):
+                for j in range(0, self.rows):
                     if len(self.matrix[i]) != len(added_matrix):
                         print('Matrix size should in the same size!! ')
                         self.wrong_count += 1
                         break# 確定break跳出的迴圈是否正確 !!!!!!
                     else: 
                         self.matrix[i][j] = self.matrix[i][j] + added_matrix[i][j]
+        self.display()
+        return self.matrix
     def sub(self, m):
         """return a new Matrix object after substraction"""
         added_matrix = list()
@@ -46,15 +48,28 @@ class Matrix:
         else:
             for i in range(0, self.rows):
                 for j in range(0, self.cols):
-                    self.matrix[i][j] = self.trans_matrix[i][j] - added_matrix[i][j] 
+                    self.matrix[i][j] = self.matrix[i][j] - added_matrix[i][j] 
     def mul(self, m):
         """return a new Matrix object after multiplication"""
-
-        pass
+        res = [[0] * len(m[0]) for i in range(len(self.rows))]
+        for i in range(len(self.rows)):#self.rows 直的
+            for j in range(len(m[0])):#len(m[0]) 橫的
+                for k in range(len(m)):
+                    res[i][j] += self.matrix[i][k] * m[k][j]
+        self.matrix = list()
+        self.matrix = res
+        return self.matrix
+        
 
     def transpose(self):
         """return a new Matrix object after transpose"""
-        pass
+        res = [[0] * len(self.matrix) for i in range(len(self.matrix[0]))]
+        for i in range(0, len(self.matrix)):
+            for j in range(0, len(self.matrix[0])):
+                res[j][i] = self.matrix[i][j]
+        self.matrix = list()
+        self.matrix = res
+        return self.matrix
     
     def display(self):
         """Display the content in the matrix"""
@@ -75,9 +90,15 @@ B_cols = int(input("Enter B matrix's cols: "))
 B_matrix = Matrix(B_row,B_cols)
 B_matrix.display()
 print('======== A + B ========')
-A_matrix.add(B_matrix.matrix)
-A_matrix.display()
+c = A_matrix.add(B_matrix.matrix)
+c.display()
 print('======== A - B ========')
 A_matrix.sub(B_matrix.matrix)
+A_matrix.display()
+print('======== A * B ========')
+
+
+print('=======================')
+A_matrix.transpose()
 A_matrix.display()
 
